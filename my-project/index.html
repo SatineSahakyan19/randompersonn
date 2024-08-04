@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/index.css">
+    <title>Vite App</title>
+  </head>
+  <body>
+      <div class="p-3 m-auto w-[650px] h-full bg-orange-200 top-10 flex flex-col">
+        <div class="flex justify-center">
+          <img id="photo" class="rounded-full border-4" src="icons/picture.jpg" alt="">
+        </div>
+        <div class="m-5 bg-zinc-50 rounded-xl flex flex-wrap items-center">
+          <img class="h-10 w-10" src="icons/person-svgrepo-com (1).svg" alt="">
+          <h1 class="text-3xl" id="name">Viraj Mardhekar</h1>
+        </div>
+        <div class="m-5 bg-zinc-50 rounded-xl flex flex-wrap items-center">
+          <img class="h-10 w-10" src="icons/birthday-cake-svgrepo-com.svg" alt="">
+          <h1 class="text-3xl" id="age">32</h1>
+        </div>
+        <div class="m-5 bg-zinc-50 rounded-xl flex flex-wrap items-center">
+          <img class="h-10 w-10" src="icons/mail-open-svgrepo-com.svg" alt="">
+          <h1 class="text-3xl" id="email">viraj.mardhekar@example.com</h1>
+        </div>
+        <div class="m-5 bg-zinc-50 rounded-xl flex flex-wrap items-center">
+          <img class="h-10 w-10" src="icons/map-location-pin-svgrepo-com.svg" alt="">
+          <h1 class="text-3xl" id="location">Bulandshahr</h1>
+        </div>
+        <div class="m-5 bg-zinc-50 rounded-xl flex flex-wrap items-center">
+          <img class="h-10 w-10" src="icons/telephone-svgrepo-com.svg" alt="">
+          <h1 class="text-3xl" id="telephone">9385727961</h1>
+        </div>
+        <div class="flex justify-center">
+          <button id="buton" class="bg-zinc-50 rounded-xl p-3">Random Person</button>
+        </div>
+      </div>
+    <script>
+      document.getElementById('buton').addEventListener('click', getRandomPerson);
+
+function getRandomPerson() {
+    fetch('https://randomuser.me/api/')
+        .then(response => response.json())
+        .then(data => {
+            const person = data.results[0];
+            document.getElementById('photo').src = person.picture.large;
+            document.getElementById('name').innerText = `${person.name.first} ${person.name.last}`;
+            document.getElementById('age').innerText = person.dob.age;
+            document.getElementById('email').innerText = person.email;
+            document.getElementById('location').innerText = `${person.location.city}`;
+            document.getElementById('telephone').innerText = person.phone;
+        })
+}
+
+    </script>
+  </body>
+</html>
